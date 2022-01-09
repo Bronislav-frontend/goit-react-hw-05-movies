@@ -1,0 +1,12 @@
+.button {
+    position: absolute;
+    top: 8%;
+    left: 5%;
+    background-image: url('../../images/back.svg');
+    background-color: rgb(245, 69, 122);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    width: 40px;
+    padding: 140px 40px;
+}

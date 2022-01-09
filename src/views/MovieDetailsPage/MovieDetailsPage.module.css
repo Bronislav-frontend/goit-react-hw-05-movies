@@ -1,10 +1,12 @@
 .link {
     padding: 20px;
     color: black;
+    background-color: rgb(245, 69, 122);
 }
 
 .activeLink {
-    color: rgb(245, 69, 122)
+    color: rgb(253, 252, 252);
+    outline: rgb(224, 221, 221) 4px solid;
 }
 
 .title {

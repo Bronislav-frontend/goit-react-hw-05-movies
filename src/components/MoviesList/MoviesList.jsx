@@ -20,7 +20,10 @@ export default function MoviesList({ movies }) {
           <Link
            to={{
             pathname: `/movies/${slug(`${title}-${id}`)}`,
-            state: { from: location },
+            state: {
+              from:
+                location.pathname === '/' ? '/' : '/movies' + location.search,
+            },
            }}
           >
             <img

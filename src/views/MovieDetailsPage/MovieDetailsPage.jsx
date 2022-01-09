@@ -1,5 +1,5 @@
 
-import { useParams, Route, Switch, useRouteMatch, } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams, Route, Switch, useRouteMatch, useLocation} from 'react-router-dom/cjs/react-router-dom.min';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect, lazy, Suspense } from 'react';
   
@@ -7,6 +7,7 @@ import { getFilmById } from '../../services/API';
   
 import MovieCard from '../../components/MoviesList/MovieCard/MovieCard';
 import s from './MovieDetailsPage.module.css'
+import Button from '../../components/Button/Button';
   
 const Cast = lazy(() =>
     import('../../components/Cast/Cast'),
@@ -22,6 +23,7 @@ export default function MovieDetailsView() {
     const movieId = slug.match(/[a-z0-9]+$/gm)[0];
 
     const { url } = useRouteMatch();
+    const location = useLocation();
   
     useEffect(() => {
       const asyncFetchById = async () => {
@@ -37,12 +39,16 @@ export default function MovieDetailsView() {
 
     return (
       <div>
+        <Button/>
         <MovieCard movie={movieDetails} />
           <h2 className={s.title}>Additional information</h2>
           <ul className={s.info_list}>
             <li>
               <NavLink
-                to={`${url}/cast`} 
+                to={{
+                  pathname: url + '/cast',
+                  state: { ...location.state, id: movieId },
+                }}
                 className={s.link}
                 activeClassName={s.activeLink}
               >
@@ -51,7 +57,10 @@ export default function MovieDetailsView() {
             </li>
             <li>
               <NavLink
-                to={`${url}/reviews`} 
+                to={{
+                pathname: url + '/reviews',
+                state: { ...location.state, id: movieId },
+                }}
                 className={s.link}
                 activeClassName={s.activeLink}
               >

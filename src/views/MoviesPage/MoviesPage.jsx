@@ -17,31 +17,26 @@ export default function MovieView() {
   const history = useHistory();
   const location = useLocation();
 
-  const serchQuery = new URLSearchParams(location.search).get('query');
+  const searchQuery = new URLSearchParams(location.search).get('query');
+  console.log(searchQuery)
 
   useEffect(() => {
-    if (serchQuery) {
-      setQuery(serchQuery);
+    if (searchQuery) {
+      getFilmsByQuery(searchQuery).then(setMovies);
+      setQuery(searchQuery);
       }
-      asyncFetchByQuery()
-  }, [serchQuery]);
+  }, [searchQuery]);
 
   const onChange = e => {
     setQuery(e.target.value);
   };
-
-  const asyncFetchByQuery = async () => {
-    const moviesBySearch = await getFilmsByQuery(query)
-    setMovies(moviesBySearch)
-  }
 
   const onSubmit = e => {
     if (query.trim() === ('')) {
       toast.warning('Enter what you want to search')
     }
     e.preventDefault();
-    setQuery('')
-    asyncFetchByQuery()
+    getFilmsByQuery(query).then(setMovies);
     history.push({ ...history.location, search: `?query=${query}` });
   };    
 
