@@ -3,8 +3,6 @@ import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
 
 import Navigation from "../Navigation/Navigation";
 
-
-
 const HomePage = lazy(() =>
     import('../../views/HomePage'),
 );
@@ -13,7 +11,7 @@ const MoviesPage = lazy(() =>
     import('../../views/MoviesPage'),
 );
 const MovieDetailsPage = lazy(() =>
-    import('../../views/MovieDetailsPage' ),
+    import('../../views/MovieDetailsPage/MovieDetailsPage' ),
 )
 
 
@@ -29,7 +27,7 @@ export default function App () {
             <Route exact path="/movies">
                 <MoviesPage />
             </Route>
-            <Route path="/movies/:movieId">
+            <Route path="/movies/:slug">
                 <MovieDetailsPage />
             </Route>
         </Switch>
