@@ -21,25 +21,26 @@ export default function MovieView() {
 
   useEffect(() => {
     if (serchQuery) {
-      getFilmsByQuery(serchQuery).then(setMovies);
       setQuery(serchQuery);
-    }
+      }
+      asyncFetchByQuery()
   }, [serchQuery]);
 
   const onChange = e => {
     setQuery(e.target.value);
   };
 
+  const asyncFetchByQuery = async () => {
+    const moviesBySearch = await getFilmsByQuery(query)
+    setMovies(moviesBySearch)
+  }
+
   const onSubmit = e => {
     if (query.trim() === ('')) {
       toast.warning('Enter what you want to search')
     }
     e.preventDefault();
-    const asyncFetchByQuery = async () => {
-        const moviesBySearch = await getFilmsByQuery(query)
-        setMovies(moviesBySearch)
-        setQuery('')
-    }
+    setQuery('')
     asyncFetchByQuery()
     history.push({ ...history.location, search: `?query=${query}` });
   };    
@@ -52,9 +53,6 @@ export default function MovieView() {
       <Suspense fallback={<h2>Loading movies list</h2>}>
         {movies && (
            <MoviesList movies={movies}/>
-        )}
-         {movies.length === 0 && (
-          <h2>Sorry, we didn`t find anything, try another query</h2>
         )}
       </Suspense>
     </div>

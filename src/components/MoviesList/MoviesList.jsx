@@ -11,6 +11,7 @@ export default function MoviesList({ movies }) {
   const location = useLocation();
 
   return (
+    
     <ul className={s.movies_gallery}>
       {movies.map(({id, title, poster_path}) => (
         <li
