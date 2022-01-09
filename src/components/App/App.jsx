@@ -1,14 +1,16 @@
 import { lazy, Suspense } from "react";
-import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
+import { Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navigation from "../Navigation/Navigation";
 
 const HomePage = lazy(() =>
-    import('../../views/HomePage'),
+    import('../../views/HomePage/HomePage'),
 );
 
 const MoviesPage = lazy(() =>
-    import('../../views/MoviesPage'),
+    import('../../views/MoviesPage/MoviesPage'),
 );
 const MovieDetailsPage = lazy(() =>
     import('../../views/MovieDetailsPage/MovieDetailsPage' ),
@@ -19,6 +21,7 @@ export default function App () {
     return (
         <>
         <Navigation/>
+        <ToastContainer />
         <Suspense fallback={<h2>Loading</h2>}>
         <Switch>
             <Route exact path="/">
@@ -30,6 +33,7 @@ export default function App () {
             <Route path="/movies/:slug">
                 <MovieDetailsPage />
             </Route>
+            <Redirect to="/" />
         </Switch>
         </Suspense>
         </>

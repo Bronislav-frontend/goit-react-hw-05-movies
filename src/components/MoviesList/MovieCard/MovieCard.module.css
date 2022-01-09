@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    padding: 15px 200px;
+}
+
+.text_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: rgb(224, 221, 221);
+}

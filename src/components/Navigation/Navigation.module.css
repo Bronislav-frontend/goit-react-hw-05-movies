@@ -1,7 +1,14 @@
 .link {
-    padding: 20px;
+    padding: 20px 150px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(224, 221, 221);
 }
 
 .activeLink {
-    color: blue;
+    color: rgb(245, 69, 122);
+}
+
+.header {
+    text-align: center;
+    background-color: black;
 }

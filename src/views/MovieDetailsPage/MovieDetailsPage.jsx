@@ -1,5 +1,5 @@
 
-import { useParams, useLocation, Route, Switch, useRouteMatch, } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams, Route, Switch, useRouteMatch, } from 'react-router-dom/cjs/react-router-dom.min';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect, lazy, Suspense } from 'react';
   
@@ -20,8 +20,7 @@ export default function MovieDetailsView() {
     const [movieDetails, setMovieDetails] = useState(null);
     const { slug } = useParams();
     const movieId = slug.match(/[a-z0-9]+$/gm)[0];
-  
-    const location = useLocation();
+
     const { url } = useRouteMatch();
   
     useEffect(() => {
@@ -35,13 +34,12 @@ export default function MovieDetailsView() {
     if (!movieDetails) {
       return <></>; 
     }
-    console.log(movieDetails)
 
     return (
       <div>
         <MovieCard movie={movieDetails} />
-          <h2>Additional information</h2>
-          <ul>
+          <h2 className={s.title}>Additional information</h2>
+          <ul className={s.info_list}>
             <li>
               <NavLink
                 to={`${url}/cast`} 

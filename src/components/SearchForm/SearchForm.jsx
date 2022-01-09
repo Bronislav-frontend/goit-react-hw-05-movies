@@ -1,6 +1,10 @@
+import s from './SearchForm.module.css'
+
 export default function SearchForm({ query, onSubmit, onChange }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form 
+    className={s.search}
+    onSubmit={onSubmit}>
       <input
         onChange={onChange}
         type="text"

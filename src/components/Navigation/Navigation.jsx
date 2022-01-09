@@ -3,7 +3,7 @@ import s from './Navigation.module.css'
 
 export default function Navigation () {
     return (
-        <header>
+        <header className={s.header}>
             <nav>
                 <NavLink exact to='/' className={s.link} activeClassName={s.activeLink}>
                     Home

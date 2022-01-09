@@ -1,6 +1,17 @@
 .link {
+    padding: 20px;
+    color: black;
 }
 
 .activeLink {
-    color: blue;
+    color: rgb(245, 69, 122)
+}
+
+.title {
+    text-align: center;
+}
+
+.info_list {
+    display: flex;
+    justify-content: space-around;
 }
